@@ -50,3 +50,5 @@ while True:
         myconn.execute(sql,values)
         mydb.commit()
         print("successfully delete ")
+
+
