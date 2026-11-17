@@ -1,70 +1,78 @@
--- Q32. Suman has created a table named WORKER with the following records:
--- WID	WNAME	WAGE	HOURS	TYPE	SITEID
--- W01	Ahmed J	1500	200	Unskilled	103
--- W11	Naveen S	520	100	Skilled	101
--- W02	Jacob B	780	95	Unskilled	101
--- W15	Nihal K	560	110	Semiskilled	NULL
--- W10	Anju S	1200	130	Skilled	103
+-- QANO	 ANAME	    ADDRESS
+-- 101	Nirja Singh	Bangalore
+-- 102	Rohan Gupta	Chennai
+-- 103	Ali Reza	Hyderabad
+-- 104	Rishabh Jain	Chennai
+-- 105	Simran Kaur	Chandigarh
 
--- (a) Write SQL statements for:
--- 1. Display the names and wages of workers whose wages are between 800 and 1500.
-SELECT WNAME,WAGE FROM Workers
-WHERE WAGE BETWEEN 800 AND 1500;
+-- Table: TRANSACT
+-- TRNO	ANO	AMOUNT	TYPE	DOT
+-- T001	101	2500	Withdraw	2017-12-21
+-- T002	103	3000	Deposit	2017-06-01
+-- T003	102	2000	Withdraw	2017-05-12
+-- T004	103	1000	Deposit	2017-10-22
+-- T005	101	12000	Deposit	2017-11-06
 
+-- Part A — Write SQL queries
+-- 1. To display details of all transactions of TYPE Deposit from table TRANSACT.
+SELECT * FROM TRANSACT
+WHERE TYPE ="Deposit";
 
--- 2. Display the records of workers whose SITEID is not known.
-SELECT * FROM Workers
-WHERE SITEID IS NULL;
-
-
--- 3. Display WNAME, WAGE and HOURS of workers whose TYPE is 'Skilled'.
-SELECT WNAME ,WAGE ,HOURS FROM Workers
-WHERE TYPE ="skilled";
-
-
--- 4. Change the WAGE to 1200 for workers whose TYPE is 'Semiskilled'.
-UPDATE Workers 
-SET WAGE =1200
-WHERE TYPE ="Semiskilled";
+-- 2. To display the ANO and AMOUNT of all Deposits and Withdrawals done in the month of October 2017 from table TRANSACT.
+SELECT ANO ,AMOUNT FROM TRANSACT
+WHERE DOT BETWEEN '2017-10-01' AND '2017-10-31';
 
 
-SET SQL_SAFE_UPDATES = 0;
+-- 3. To display the last date of transaction (DOT) from the table TRANSACT for the accounts having ANO as 103.
+
+-- 4. To display all ANO, ANAME and DOT of those persons from tables ACCOUNT and TRANSACT who have done transactions less than or equal to 3000.
 
 
-CREATE DATABASE PAID;
-USE  PAID;
+CREATE DATABASE CLIENT;
+USE CLIENT;
 
-CREATE TABLE Workers(
-WID VARCHAR(50) PRIMARY KEY,
-WNAME VARCHAR(50) NOT NULL ,
-WAGE INT ,
-HOURS INT ,
-TYPE VARCHAR(50) NOT NULL, 
-SITEID INT 
+CREATE TABLE Account (
+ANO INT PRIMARY KEY,
+ANAME VARCHAR(50) ,
+ADDRESS VARCHAR(50)
 )
 
-INSERT INTO Workers
-(WID ,WNAME ,WAGE ,HOURS ,TYPE ,SITEID )
-VALUES("W01" ,"Ahmed J" ,1500 ,200 ,"Unskilled" ,103 ),
-      ("W11" ,"Naveen S" ,520 ,100 ,"skilled" ,101 ),
-      ("W02" ,"Jacob B" ,780 ,95 ,"Unskilled" ,101 ),
-	  ("W15","Nihal K" ,560 ,110 ,"Semiskilled" ,NULL ),
-	  ("W10" ,"Anju S" ,1200 ,130 ,"skilled" ,103 );
-
-SELECT * FROM Workers ;
+SELECT * FROM Account;
 
 
+-- 101	Nirja Singh	Bangalore
+-- 102	Rohan Gupta	Chennai
+-- 103	Ali Reza	Hyderabad
+-- 104	Rishabh Jain	Chennai
+-- 105	Simran Kaur	Chandigarh
+
+INSERT INTO Account
+(ANO ,ANAME ,ADDRESS )
+VALUES
+(101 ,"Nirja singh" ,"Bangalore" ),
+(102 ,"Rohan Gupta" ,"Chennai" ),
+(103 ,"Ali Reza" ,"Hyderabad" ),
+(104 ,"Rishabh Jain " ,"Chennai" ),
+(105 ,"Simran Kaur" ,"Chandigarh" );
+
+CREATE TABLE TRANSACT (
+    TRNO VARCHAR(5) PRIMARY KEY,
+    ANO INT,
+    AMOUNT INT,
+    TYPE VARCHAR(10),
+    DOT DATE
+);
+
+INSERT INTO TRANSACT
+(TRNO, ANO, AMOUNT, TYPE, DOT)
+VALUES
+('T001', 101, 2500, 'Withdraw', '2017-12-21'),
+('T002', 103, 3000, 'Deposit',  '2017-06-01'),
+('T003', 102, 2000, 'Withdraw', '2017-05-12'),
+('T004', 103, 1000, 'Deposit',  '2017-10-22'),
+('T005', 101, 12000, 'Deposit', '2017-11-06');
 
 
-
-
-
-
-
-
-
-
-
-
+SELECT * FROM TRANSACT;
 
 
