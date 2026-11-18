@@ -28,6 +28,16 @@ WHERE DOT BETWEEN '2017-10-01' AND '2017-10-31';
 -- 4. To display all ANO, ANAME and DOT of those persons from tables ACCOUNT and TRANSACT who have done transactions less than or equal to 3000.
 
 
+
+
+
+
+
+
+
+
+
+
 CREATE DATABASE CLIENT;
 USE CLIENT;
 
